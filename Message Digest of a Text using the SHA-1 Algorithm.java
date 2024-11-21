@@ -4,7 +4,7 @@ import java.security.NoSuchAlgorithmException;
 class SHA1Hashing {
 
     // Method to calculate the SHA-1 hash of a given text
-    public static String calculateSHA1(String text) {
+    static String calculateSHA1(String text) {
         try {
             // Initialize the SHA-1 MessageDigest
             MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
