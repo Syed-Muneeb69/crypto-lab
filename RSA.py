@@ -13,7 +13,7 @@ print("\nPublic Key:")
 print(public_key.decode())
 
 # Message to encrypt
-message = b"My name is Syed Muneeb"
+message = b"Muneeb"
 
 # Encryption
 public_key_obj = RSA.import_key(public_key)

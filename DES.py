@@ -34,7 +34,7 @@ def des_decrypt(ciphertext, key):
 # Example usage
 if __name__ == "__main__":
     key = b'secret12'  # 8-byte key
-    plaintext = "Hello DES Encryption!"
+    plaintext = "My name is Syed Muneeb"
 
     # Encrypt the plaintext
     ciphertext = des_encrypt(plaintext, key)
