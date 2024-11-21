@@ -2,25 +2,31 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Random import get_random_bytes
 
+# Key Pair Generation
+key = RSA.generate(2048)  # 2048-bit key
+private_key = key.export_key()  # Export private key
+public_key = key.publickey().export_key()  # Export public key
 
-def generate_rsa_keys():
-key = RSA.generate(2048) private_key = key.export_key()
-public_key = key.publickey().export_key() return private_key, public_key
+print("Private Key:")
+print(private_key.decode())
+print("\nPublic Key:")
+print(public_key.decode())
 
-def rsa_encrypt(text, public_key): rsa_public_key = RSA.import_key(public_key)
-cipher_rsa = PKCS1_OAEP.new(rsa_public_key) encrypted_text = cipher_rsa.encrypt(text.encode()) return encrypted_text
+# Message to encrypt
+message = b"My name is Syed Muneeb"
 
-def rsa_decrypt(encrypted_text, private_key): rsa_private_key = RSA.import_key(private_key) cipher_rsa = PKCS1_OAEP.new(rsa_private_key)
-decrypted_text = cipher_rsa.decrypt(encrypted_text).decode() return decrypted_text
+# Encryption
+public_key_obj = RSA.import_key(public_key)
+cipher = PKCS1_OAEP.new(public_key_obj)  # RSA with OAEP padding
+ciphertext = cipher.encrypt(message)
 
-Example usage
-private_key, public_key = generate_rsa_keys() plaintext = "hello"
-encrypted_text = rsa_encrypt(plaintext, public_key)
-decrypted_text = rsa_decrypt(encrypted_text, private_key)
- 
+print("\nCiphertext (hex):")
+print(ciphertext.hex())
 
+# Decryption
+private_key_obj = RSA.import_key(private_key)
+decipher = PKCS1_OAEP.new(private_key_obj)
+plaintext = decipher.decrypt(ciphertext)
 
-print("Plaintext:", plaintext) print("Encrypted:", encrypted_text) print("Decrypted:", decrypted_text)
-
-
-
+print("\nDecrypted message:")
+print(plaintext.decode())
