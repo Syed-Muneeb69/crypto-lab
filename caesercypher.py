@@ -21,7 +21,7 @@ def caesar_cipher_decrypt(text, shift):
     return caesar_cipher_encrypt(text, -shift)
 
 # Example usage
-plaintext = "hello"
+plaintext = "hello world"
 shift = 3
 encrypted_text = caesar_cipher_encrypt(plaintext, shift)
 decrypted_text = caesar_cipher_decrypt(encrypted_text, shift)
