@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Diffie-Hellman Key Exchange</title>
+</head>
+<body>
+<h2>Diffie-Hellman Key Exchange</h2>
+<button onclick="diffieHellman()">Generate Keys</button> <p id="output"></p>
+
+<script>
+function diffieHellman() { const p = 23; // Prime number
+const g = 5; // Primitive root modulo p
+
+
+const a = Math.floor(Math.random() * 10) + 1; // Private key of Alice const b = Math.floor(Math.random() * 10) + 1; // Private key of Bob
+
+const A = Math.pow(g, a) % p; // Public key of Alice const B = Math.pow(g, b) % p; // Public key of Bob
+
+const sharedSecretA = Math.pow(B, a) % p; // Shared secret for Alice const sharedSecretB = Math.pow(A, b) % p; // Shared secret for Bob
+
+document.getElementById("output").innerText =
+`Prime (p): ${p}\n` +
+`Primitive Root (g): ${g}\n` +
+ 
+`Alice's Private Key (a): ${a}\n` +
+
+`Bob's Private Key (b): ${b}\n` +
+`Alice's Public Key (A): ${A}\n` +
+`Bob's Public Key (B): ${B}\n` +
+`Shared Secret (Alice): ${sharedSecretA}\n` +
+`Shared Secret (Bob): ${sharedSecretB}\n`;
+}
+</script>
+</body>
+</html>
+``` 
